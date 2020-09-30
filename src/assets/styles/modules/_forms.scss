@@ -1,0 +1,71 @@
+/*
+  Form elements
+ */
+
+label,
+input,
+select,
+textarea {
+  margin: .2rem 0;
+}
+
+input,
+select,
+textarea {
+  @include contrast(color(white));
+
+  border: 0;
+  padding: .5rem;
+}
+
+input {
+  line-height: 2rem;
+}
+
+
+input[type='checkbox'],
+input[type='radio'] {
+  margin: .2rem;
+}
+
+input[type='checkbox'] + label,
+input[type='radio'] + label {
+  cursor: pointer;
+}
+
+
+/*
+  Color inputs
+ */
+
+input[type='color'],
+.input[type='color'] {
+  cursor: pointer;
+  height: 3rem;
+  padding: 0;
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  &::-webkit-color-swatch {
+    border: 0;
+  }
+}
+
+
+/**
+  Group of form inputs and corresponding labels
+ */
+
+.form-group {
+  display: block;
+  padding: 0 0 1rem;
+
+  label,
+  input:not([type='checkbox']):not([type='radio']),
+  select,
+  textarea {
+    width: 100%;
+  }
+}

@@ -1,0 +1,59 @@
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+@import 'base/colors';
+
+
+.swatch {
+  @include contrast(color(neutral));
+
+  display: inline-block;
+  min-width: 10rem;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+
+  &.swatch-primary { @include contrast(color(primary)); }
+  &.swatch-accent { @include contrast(color(accent)); }
+  &.swatch-neutral { @include contrast(color(neutral)); }
+
+  &.swatch-primary-50 { @include contrast(color-primary(50)); }
+  &.swatch-primary-100 { @include contrast(color-primary(100)); }
+  &.swatch-primary-200 { @include contrast(color-primary(200)); }
+  &.swatch-primary-300 { @include contrast(color-primary(300)); }
+  &.swatch-primary-400 { @include contrast(color-primary(400)); }
+  &.swatch-primary-500 { @include contrast(color-primary(500)); }
+  &.swatch-primary-600 { @include contrast(color-primary(600)); }
+  &.swatch-primary-700 { @include contrast(color-primary(700)); }
+  &.swatch-primary-800 { @include contrast(color-primary(800)); }
+  &.swatch-primary-900 { @include contrast(color-primary(900)); }
+
+  &.swatch-accent-50 { @include contrast(color-accent(50)); }
+  &.swatch-accent-100 { @include contrast(color-accent(100)); }
+  &.swatch-accent-200 { @include contrast(color-accent(200)); }
+  &.swatch-accent-300 { @include contrast(color-accent(300)); }
+  &.swatch-accent-400 { @include contrast(color-accent(400)); }
+  &.swatch-accent-500 { @include contrast(color-accent(500)); }
+  &.swatch-accent-600 { @include contrast(color-accent(600)); }
+  &.swatch-accent-700 { @include contrast(color-accent(700)); }
+  &.swatch-accent-800 { @include contrast(color-accent(800)); }
+  &.swatch-accent-900 { @include contrast(color-accent(900)); }
+
+  &.swatch-neutral-50 { @include contrast(color-neutral(50)); }
+  &.swatch-neutral-100 { @include contrast(color-neutral(100)); }
+  &.swatch-neutral-200 { @include contrast(color-neutral(200)); }
+  &.swatch-neutral-300 { @include contrast(color-neutral(300)); }
+  &.swatch-neutral-400 { @include contrast(color-neutral(400)); }
+  &.swatch-neutral-500 { @include contrast(color-neutral(500)); }
+  &.swatch-neutral-600 { @include contrast(color-neutral(600)); }
+  &.swatch-neutral-700 { @include contrast(color-neutral(700)); }
+  &.swatch-neutral-800 { @include contrast(color-neutral(800)); }
+  &.swatch-neutral-900 { @include contrast(color-neutral(900)); }
+}
+
+
+.swatch-group {
+  .swatch {
+    width: auto;
+  }
+}
