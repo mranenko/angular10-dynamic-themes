@@ -1,4 +1,19 @@
 /**
+  Helper functions
+ */
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+
+/**
   Color functions
  */
 
@@ -11,13 +26,21 @@
 }
 
 @function color-level($color: color(neutral), $level: 500, $color-interval: 18%) {
-  @if ($level < 500) {
-    $-color-percentage: $color-interval * ((500 - $level) / 100);
-    @return tint($color, $-color-percentage);
+  @if type-of($color) == color {
+    @if ($level < 500) {
+      $-color-percentage: $color-interval * ((500 - $level) / 100);
+      @return tint($color, $-color-percentage);
+    }
+    @else if ($level > 500) {
+      $-color-percentage: $color-interval * (($level - 500) / 100);
+      @return shade($color, $-color-percentage);
+    }
+    @else {
+      @return $color;
+    }
   }
-  @else if ($level > 500) {
-    $-color-percentage: $color-interval * (($level - 500) / 100);
-    @return shade($color, $-color-percentage);
+  @else if str-index($color, 'var(') > 0 {
+    @return str-replace($color, ')', '-#{$level})');
   }
   @else {
     @return $color;
@@ -25,6 +48,14 @@
 }
 
 @function contrast($color, $dark: color(black), $light: color(white)) {
-  @if (lightness($color) > 75) { @return $dark; }
-  @else { @return $light; }
+  @if type-of($color) == color {
+    @if (lightness($color) > 75) { @return $dark; }
+    @else { @return $light; }
+  }
+  @else if str-index($color, 'var(') > 0 {
+    @return str-replace($color, ')', '-contrast)');
+  }
+  @else {
+    @return $dark;
+  }
 }
