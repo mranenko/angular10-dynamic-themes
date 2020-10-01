@@ -1,5 +1,5 @@
 button, .button {
-  @include contrast(color(neutral));
+  @include contrast(color-neutral(500));
 
   border: 0;
   font-size: font(text, size);
@@ -10,29 +10,29 @@ button, .button {
 
   &:hover,
   &.hover {
-    @include contrast(color(neutral));
+    @include contrast(color-neutral(600));
   }
 
 
   &.button-primary {
-    @include contrast(color(primary));
+    @include contrast(color-primary(500));
 
     &:hover,
     &.hover {
-      @include contrast(color(primary));
+      @include contrast(color-primary(600));
     }
   }
 
 
   &.button-link {
     background: none;
-    color: color(primary);
+    color: color-primary(500);
     text-decoration: none;
 
     &:hover,
     &.hover {
       background: none;
-      color: color(primary);
+      color: color-primary(600);
       text-decoration: underline;
     }
   }

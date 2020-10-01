@@ -19,11 +19,15 @@
       margin: 0 -1rem;
     }
 
-    ul li a {
+    ul li .link {
+      color: inherit;
       font-size: 3rem;
+      opacity: 1;
       padding: 1rem;
 
-      &:hover {
+      &:hover,
+      .hover {
+        color: inherit;
         opacity: .85;
       }
     }
