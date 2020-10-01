@@ -1,18 +1,24 @@
 import {Component, OnInit} from '@angular/core';
 
+/* App services */
+import {RootService} from '../../services/root.service';
+
+
 @Component({
   selector: 'app-theme-color-picker',
   templateUrl: './theme-color-picker.component.html',
   styleUrls: ['./theme-color-picker.component.scss']
 })
 export class ThemeColorPickerComponent implements OnInit {
-  colorPrimary: string = '#297373';
-  colorAccent: string = '#ff8552';
+  colorPrimary: string;
+  colorAccent: string;
 
-  constructor() {
+  constructor(private rootService: RootService) {
   }
 
   ngOnInit(): void {
+    this.colorPrimary = this.rootService.get('--color-primary');
+    this.colorAccent = this.rootService.get('--color-accent');
   }
 
 
