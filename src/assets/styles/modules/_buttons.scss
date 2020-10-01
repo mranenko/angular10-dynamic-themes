@@ -2,7 +2,7 @@ button, .button {
   @include contrast(color(neutral));
 
   border: 0;
-  font-size: 1.4rem;
+  font-size: font(text, size);
   font-weight: 600;
   line-height: 2rem;
   margin: .2rem 0;

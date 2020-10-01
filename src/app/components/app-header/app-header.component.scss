@@ -2,15 +2,9 @@
   Header title
  */
 
-.header {
-  .title,
-  .subtitle {
-    margin: 0;
-  }
-
-  .title {
-    text-transform: uppercase;
-  }
+.header .title {
+  margin: 1.5rem 0;
+  text-transform: uppercase;
 }
 
 
