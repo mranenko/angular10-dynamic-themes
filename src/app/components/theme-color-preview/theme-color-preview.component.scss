@@ -50,10 +50,3 @@
   &.swatch-neutral-800 { @include contrast(color-neutral(800)); }
   &.swatch-neutral-900 { @include contrast(color-neutral(900)); }
 }
-
-
-.swatch-group {
-  .swatch {
-    width: auto;
-  }
-}
