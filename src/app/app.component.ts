@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+/* App services */
+import {ThemeService} from './services/theme.service';
 
 
 @Component({
@@ -6,6 +9,11 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'Dynamic themes';
+export class AppComponent implements OnInit {
+  constructor(private themeService: ThemeService) {
+  }
+
+  ngOnInit(): void {
+    this.themeService.initializeTheme();
+  }
 }

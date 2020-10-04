@@ -32,7 +32,7 @@ export class StorageService {
     }
   }
 
-  clear(): void {
-    window.localStorage.clear();
-  }
+  // clear(): void {
+  //   window.localStorage.clear();
+  // }
 }
