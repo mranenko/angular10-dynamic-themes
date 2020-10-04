@@ -34,30 +34,23 @@ export class ColorService {
     color1 = color1.replace(/#/g, '');
     color2 = color2.replace(/#/g, '');
 
-    /* decimal -> hex and hex -> decimal conversions */
-    function d2h(d): string {
-      return d.toString(16);
-    }
-
-    function h2d(h): number {
-      return parseInt(h, 16);
-    }
+    /* convert decimal -> hex and hex -> decimal */
+    const decToHex = (dec) => dec.toString(16);
+    const hexToDec = (hex) => parseInt(hex, 16);
 
     let colorMix = '#';
 
     /* loop through 3 hex pairs: red, green, and blue */
     for (let i = 0; i < 6; i += 2) {
-      const d1 = h2d(color1.substr(i, 2));
-      const d2 = h2d(color2.substr(i, 2));
+      const dec1 = hexToDec(color1.substr(i, 2));
+      const dec2 = hexToDec(color2.substr(i, 2));
 
-      let h = d2h(Math.round(d2 + (d1 - d2) * (percentage / 100.0)));
+      let hex = decToHex(Math.round(dec2 + (dec1 - dec2) * (percentage / 100.0)));
 
       /* prepend a '0' if h has only one digit */
-      if (h.length < 2) {
-        h = '0' + h;
-      }
+      hex = (hex.length < 2) ? `0${hex}` : hex;
 
-      colorMix += h;
+      colorMix += hex;
     }
 
     return colorMix;
