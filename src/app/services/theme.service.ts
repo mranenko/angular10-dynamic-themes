@@ -11,9 +11,14 @@ import {StorageService} from './storage.service';
 })
 export class ThemeService {
   readonly key = {
+    colorBlack: '--color-black',
+    colorWhite: '--color-white',
     colorPrimary: '--color-primary',
     colorAccent: '--color-accent',
   };
+
+  readonly colorBlack: string = this.rootService.get(this.key.colorBlack);
+  readonly colorWhite: string = this.rootService.get(this.key.colorWhite);
 
   colorPrimary: string = '';
   colorAccent: string = '';
@@ -23,7 +28,7 @@ export class ThemeService {
               private storageService: StorageService) {
   }
 
-  initializeTheme(): void {
+  initialize(): void {
     this.colorPrimary = this.getColor(this.key.colorPrimary);
     this.colorAccent = this.getColor(this.key.colorAccent);
 
@@ -36,13 +41,31 @@ export class ThemeService {
     this.setColorScaleAndContrast(this.key.colorAccent, this.colorAccent);
   }
 
+  reset(): void {
+    /* clear saved theme colors */
+    this.storageService.remove(this.key.colorPrimary);
+    this.storageService.remove(this.key.colorAccent);
+
+    /* clear calculated root theme colors */
+    this.rootService.clear();
+
+    /* re-initialize theme colors */
+    this.initialize();
+  }
+
+  save(): void {
+    this.storageService.set(this.key.colorPrimary, this.colorPrimary);
+    this.storageService.set(this.key.colorAccent, this.colorAccent);
+  }
+
   getColor(key: string): string {
     return this.storageService.get(key) || this.rootService.get(key);
   }
 
   setColorAndContrast(key: string, value: string): void {
     this.rootService.set(key, value);
-    this.rootService.set(`${key}-contrast`, this.colorService.contrast(value));
+    this.rootService.set(`${key}-contrast`,
+      this.colorService.contrast(value, this.colorBlack, this.colorWhite));
   }
 
   setColorScaleAndContrast(key: string, value: string): void {
@@ -81,22 +104,5 @@ export class ThemeService {
     this.colorAccent = value;
     this.setColorAndContrast(this.key.colorAccent, value);
     this.setColorScaleAndContrast(this.key.colorAccent, value);
-  }
-
-  reset(): void {
-    /* clear saved theme colors */
-    this.storageService.remove(this.key.colorPrimary);
-    this.storageService.remove(this.key.colorAccent);
-
-    /* clear calculated root theme colors */
-    this.rootService.clear();
-
-    /* re-initialize theme colors */
-    this.initializeTheme();
-  }
-
-  save(): void {
-    this.storageService.set(this.key.colorPrimary, this.colorPrimary);
-    this.storageService.set(this.key.colorAccent, this.colorAccent);
   }
 }

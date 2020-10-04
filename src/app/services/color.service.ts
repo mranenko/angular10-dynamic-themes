@@ -1,8 +1,5 @@
 import {Injectable} from '@angular/core';
 
-/* App services */
-import {RootService} from './root.service';
-
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +18,7 @@ export class ColorService {
     900: 65,
   };
 
-  constructor(private rootService: RootService) {
+  constructor() {
   }
 
   shade(color, percentage): string {
@@ -66,9 +63,7 @@ export class ColorService {
     return colorMix;
   }
 
-  contrast(colorHex,
-           colorBlackHex = this.rootService.get('--color-black'),
-           colorWhiteHex = this.rootService.get('--color-white')): string {
+  contrast(colorHex, colorBlackHex, colorWhiteHex): string {
     return this.lightness(colorHex) > 75 ? colorBlackHex : colorWhiteHex;
   }
 

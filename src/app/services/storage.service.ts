@@ -5,7 +5,6 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class StorageService {
-
   constructor() {
   }
 
@@ -31,8 +30,4 @@ export class StorageService {
       window.localStorage.removeItem(key);
     }
   }
-
-  // clear(): void {
-  //   window.localStorage.clear();
-  // }
 }
