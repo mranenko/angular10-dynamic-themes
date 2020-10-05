@@ -47,7 +47,7 @@ export class ColorService {
 
       let hex = decToHex(Math.round(dec2 + (dec1 - dec2) * (percentage / 100.0)));
 
-      /* prepend a '0' if h has only one digit */
+      /* prepend a '0' if hex has only one digit */
       hex = (hex.length < 2) ? `0${hex}` : hex;
 
       colorMix += hex;
